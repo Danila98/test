@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отчет</title>
+</head>
+<body>
+
+<table id="report" border="1">
+    <tr>
+        <th>Куратор</th>
+        <th>Открытий</th>
+        <th>Зарегестрированны/сданны</th>
+        <th>Сумма</th>
+        <th>План куратора</th>
+        <th>Выполнение плана %</th>
+        <th>ч/мес</th>
+        <th>открытий за год</th>
+        <th>принято</th>
+        <th>стоимость отдела</th>
+    </tr>
+
+</table>
+<script src="//api.bitrix24.com/api/v1/"></script>  
+<script src="js/receiving_data.js"></script>
+<script src="js/table_creation.js"></script>
+
+
+<script>
+let openCounter = 0, registeredCouner = 0, allCounter = 0, data;
+const depatrmentId = [91, 77, 57, 105, 156, 87, 134, 152, 73, 69], // -ID нужных нам департаментов, это определенные статичные ID
+      userName = ['Волков', 'Бочаров', 'Романь', 'Ельцов', 'Игнатенко', 'Рогожникова', 'Скуднов', 'Филин', 'без куратора', 'Дроздов']; // названия департаментов тоже не меняются
+let userId = [];         //-Сюда будут сохранятся ID ползователей каждого департамента 
+
+
+
+for (let i = 0; i < depatrmentId.length ; i++) {                 //Проходимся по департаментам 
+
+    let ID = depatrmentId[i],
+        name = userName[i];
+
+        getUser(ID);      // По юзерам      
+        addSrting(openCounter, registeredCouner, allCounter, name);      //фомируем строку для каждого департамента 
+}                                                                       //Здесь выплывает ошибка. Обращение к серверу происходит долго, в это время ассинхронно строятся пустые строки
+</script>
+</body>
+</html>
